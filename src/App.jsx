@@ -1,20 +1,16 @@
 import { useState } from 'react'
 import styled from "styled-components";
+import StartGame from './components/StartGame';
 
-const Button = styled.button`
-width: 100px;
-cursor: pointer;
-  
-`
+
+
 
 function App() {
 
   return (
     <>
-   
-  <Button>
-    start now
-  </Button>
+   <StartGame/>
+ 
     </>
   )
 }
