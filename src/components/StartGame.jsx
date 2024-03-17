@@ -5,23 +5,43 @@ import styled from "styled-components";
 let Container = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: rebeccapurple;
+
+  /* background-color: lightseagreen; */
   display: flex;
   align-items: center;
   justify-content: center;
 
   #content {
-    width: 400px;
-    text-align: center;
+   
     display: flex;
+    
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
   }
+  #content h1{
+    font-size: 80px ;
+    margin-bottom: 12px;
+    text-transform:uppercase;
+    white-space: nowrap;
+    
+  
+
+  }
+  #content #textContainer{
+    width: 100%;
+    text-align: end;
+  }
+  #content #btnContainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
  
   #heroImage img{
-    width: 500px;
+    width: 470px;
   }
 `;
 
@@ -36,30 +56,36 @@ let Button = styled.button`
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 16px;
+  width: 200px;
+  height: 35px;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  transition: border 0.08s linear;
 
   &:hover{
     background-color: white;
     color: black;
     font-weight: 700;
-    font-size: 20px;
+  font-size: 16px;
+  border: 2px solid black;
 
   }
 `;
 
 
-function StartGame() {
+function StartGame({toggle}) {
   return (
     <Container>
       <div id="heroImage">
         <img
-          src="https://png.pngtree.com/background/20230525/original/pngtree-two-white-dice-on-a-black-background-with-scattered-dust-picture-image_2731976.jpg"
+          src="/public/dice/dices.png"
           alt=""
         />
       </div>
       <div id="content">
-        <h1>Dice Game</h1>
-        <Button>Start Now</Button>
+      <div id="textContainer">  <h1>Dice Game</h1></div>
+       <div id="btnContainer"> <Button onClick={toggle}>Play Now</Button></div>
       </div>
     </Container>
   );
