@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import TotalScore from "./TotalScore";
 import NumberSelector from "./NumberSelector";
+import RulesProvider from "./RulesProvider";
 
 function GamePlay() {
   let [score,setScore]= useState(0);
@@ -51,11 +52,13 @@ let click = () => {
             setScore(0)
           }}>Reset Score</button>
           <button id="btn2" onClick={click}>{showRules?"Hide":"Show"} Rules</button>
-        <RulesContainer>
-        {showRules &&  (<Rules/>)}
-        </RulesContainer>
+       
+        
           
         </div>
+        <RulesContainer>
+        {showRules &&  (<RulesProvider/>)}
+        </RulesContainer>
       </BottomContainer>
     </main>
   );
@@ -67,8 +70,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 position: relative;
-right:400px;
-top: 500px;
+
 `
 
 let BottomContainer = styled.div`
