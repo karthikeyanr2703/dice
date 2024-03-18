@@ -4,20 +4,42 @@ import TotalScore from "./TotalScore";
 import NumberSelector from "./NumberSelector";
 
 function GamePlay() {
+  let [score,setScore]= useState(0);
+  let [selectedNumber, setSelectedNumber] = useState();
   let [currentDice, setCurrentDice] = useState(1);
+  let [error,setError] = useState("");
+  let [showRules,setShowRules] = useState(false)
+let click = () => {
+  (()=>{setShowRules((prev)=>!prev) })()
+
+
+}
   let randNum = (min, max) => {
+    if (selectedNumber=== undefined){
+      setError("You have not selected a number");
+      return
+    }
+    
     let randomNumber = Math.random();
 
     let scaledNumber = randomNumber * (max - min + 1);
     let result = Math.floor(scaledNumber) + min;
     console.log(randomNumber, scaledNumber, result);
     setCurrentDice((prev)=> result)
+    if(selectedNumber===result){
+      setScore((prev)=> prev+result)
+
+    }
+    else{
+      setScore((prev)=> prev-2)
+    }
+    setSelectedNumber(undefined)
   };
   return (
     <main>
       <TopContainer>
-        <TotalScore />
-        <NumberSelector />
+        <TotalScore score={score} />
+        <NumberSelector selectedNumber={selectedNumber} setSelectedNumber={setSelectedNumber}  error={error} setError={setError}/>
       </TopContainer>
       <BottomContainer>
         <div id="card">
@@ -25,8 +47,14 @@ function GamePlay() {
             <img src={`/public/dice/dice_${currentDice}.png`} alt="diceImage" onClick={()=>randNum(1,6)} />
           </div>
           <p>Click on dice to roll</p>
-          <button id="btn1">Reset Score</button>
-          <button id="btn2">Show Rules</button>
+          <button id="btn1" onClick={()=>{
+            setScore(0)
+          }}>Reset Score</button>
+          <button id="btn2" onClick={click}>{showRules?"Hide":"Show"} Rules</button>
+        <RulesContainer>
+        {showRules &&  (<Rules/>)}
+        </RulesContainer>
+          
         </div>
       </BottomContainer>
     </main>
@@ -34,6 +62,14 @@ function GamePlay() {
 }
 
 export default GamePlay;
+let RulesContainer = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+position: relative;
+right:400px;
+top: 500px;
+`
 
 let BottomContainer = styled.div`
   height: calc(100vh - 171.33px);

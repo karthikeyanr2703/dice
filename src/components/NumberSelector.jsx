@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-function NumberSelector() {
+function NumberSelector({selectedNumber,setSelectedNumber,error,setError}) {
   let arr = [1, 2, 3, 4, 5, 6];
-  let [selectedNumber, setSelectedNumber] = useState();
+ 
 
   return (
     <MainContainer>
+       <p id="error">{error}</p>
       <SelectorContainer>
+       
         {arr.map((val) => (
           <Box
             isSelecting={val === selectedNumber}
@@ -15,6 +17,7 @@ function NumberSelector() {
             id={val}
             onClick={() => {
               setSelectedNumber(val);
+              setError("")
             }}
           >
             {val}
@@ -35,6 +38,14 @@ let MainContainer = styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  #error{
+    font-size: 18px;
+    color: red;
+    font-weight: 600;
+    white-space: nowrap;
+    padding-bottom: 5px;
+    user-select: none;
+  }
 `;
 let TextContainer = styled.section`
   width: 100%;
