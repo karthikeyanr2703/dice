@@ -3,6 +3,12 @@ import styled from "styled-components";
 import TotalScore from "./TotalScore";
 import NumberSelector from "./NumberSelector";
 import RulesProvider from "./RulesProvider";
+import img1 from "../../public/dice/dice_1.png"
+import img2 from "../../public/dice/dice_2.png"
+import img3 from "../../public/dice/dice_3.png"
+import img4 from "../../public/dice/dice_4.png"
+import img5 from "../../public/dice/dice_5.png"
+import img6 from "../../public/dice/dice_6.png"
 
 function GamePlay() {
   let [score,setScore]= useState(0);
@@ -10,6 +16,7 @@ function GamePlay() {
   let [currentDice, setCurrentDice] = useState(1);
   let [error,setError] = useState("");
   let [showRules,setShowRules] = useState(false)
+  const images = [img1, img2, img3, img4, img5, img6];
 let click = () => {
   (()=>{setShowRules((prev)=>!prev) })()
 
@@ -45,7 +52,7 @@ let click = () => {
       <BottomContainer>
         <div id="card">
           <div id="img">
-            <img src={`/public/dice/dice_${currentDice}.png`} alt="diceImage" onClick={()=>randNum(1,6)} />
+            <img src={images[currentDice - 1]} alt={`Dice ${currentDice}`} onClick={()=>randNum(1,6)} />
           </div>
           <p>Click on dice to roll</p>
           <button id="btn1" onClick={()=>{

@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
+import homeImg from "../../public/dice/dices.png";
 
 let Container = styled.div`
   width: 100vw;
@@ -12,35 +13,30 @@ let Container = styled.div`
   justify-content: center;
 
   #content {
-   
     display: flex;
-    
+
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
   }
-  #content h1{
-    font-size: 80px ;
+  #content h1 {
+    font-size: 80px;
     margin-bottom: 12px;
-    text-transform:uppercase;
+    text-transform: uppercase;
     white-space: nowrap;
-    
-  
-
   }
-  #content #textContainer{
+  #content #textContainer {
     width: 100%;
     text-align: end;
   }
-  #content #btnContainer{
+  #content #btnContainer {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
   }
- 
-  #heroImage img{
+
+  #heroImage img {
     width: 470px;
   }
 `;
@@ -63,29 +59,30 @@ let Button = styled.button`
   border: 2px solid transparent;
   transition: border 0.08s linear;
 
-  &:hover{
+  &:hover {
     background-color: white;
     color: black;
     font-weight: 700;
-  font-size: 16px;
-  border: 2px solid black;
-
+    font-size: 16px;
+    border: 2px solid black;
   }
 `;
 
-
-function StartGame({toggle}) {
+function StartGame({ toggle }) {
   return (
     <Container>
       <div id="heroImage">
-        <img
-          src="/public/dice/dices.png"
-          alt=""
-        />
+        <img src={homeImg} />
       </div>
       <div id="content">
-      <div id="textContainer">  <h1>Dice Game</h1></div>
-       <div id="btnContainer"> <Button onClick={toggle}>Play Now</Button></div>
+        <div id="textContainer">
+          {" "}
+          <h1>Dice Game</h1>
+        </div>
+        <div id="btnContainer">
+          {" "}
+          <Button onClick={toggle}>Play Now</Button>
+        </div>
       </div>
     </Container>
   );
